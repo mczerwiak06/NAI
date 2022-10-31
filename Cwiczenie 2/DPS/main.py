@@ -238,8 +238,8 @@ dsp = ctrl.ControlSystemSimulation(dsp_ctrl)
 Simulation of our system with given drift angle and speed:
 """
 
-angle = 23
-speed = 0
+angle = 182
+speed = 10
 dsp.input['driftAngle'] = angle
 dsp.input['driftSpeed'] = speed
 
