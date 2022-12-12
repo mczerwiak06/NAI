@@ -1,13 +1,14 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 
 """
 ===========================================================
 Clothes Recognition using Neural Network
 ===========================================================
 Authors: Michał Czerwiak s21356, Bartosz Kamiński s20500
-To run program you need to have matplotlib, tensorflow and numpy packages. Program uses neural network built with
+To run program you need to have matplotlib, tensorflow, sklearn and numpy packages. Program uses neural network built with
 TensorFlow library to learn and recognize clothes from picture. Model uses the Fashion MNIST dataset which contains
 70000 images of clothing articles in 10 categories. 60000 images are used for training the network and 10000 images
 are used to test it.
@@ -122,3 +123,13 @@ for i in range(num_images):
 plt.tight_layout()
 plt.show()
 
+"""
+Creating the Confusion Matrix
+"""
+y_probs = model.predict(test_images)
+y_preds = y_probs.argmax(axis=1)
+cm=confusion_matrix(y_preds,test_labels)
+disp=ConfusionMatrixDisplay(confusion_matrix=cm,display_labels=class_names)
+fig, ax = plt.subplots(figsize=(10,10))
+disp.plot(ax=ax);
+plt.show()
